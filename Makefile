@@ -1,2 +1,2 @@
-c:
-	gcc main.c -o ./build/main && ./build/main
+galo:
+	gcc galo.c -o ./build/galo && ./build/galo
