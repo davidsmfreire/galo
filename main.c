@@ -97,8 +97,8 @@ bool is_in_path_to_win(Play play, char* player_symbol, char* grid[3][3]) {
     return false;
 }
 
-void generate_all_plays(char* play_symbol, char* grid[3][3], Play* plays) {
-    size_t play_index = 0;
+int generate_all_plays(char* play_symbol, char* grid[3][3], Play* plays) {
+    int play_index = 0;
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
             if (strcmp(grid[i][j], "□") == 0) {
@@ -108,6 +108,7 @@ void generate_all_plays(char* play_symbol, char* grid[3][3], Play* plays) {
             }
         }
     }
+    return play_index;
 }
 
 bool is_gonna_win(Play play, char* play_symbol, char* grid[3][3]){
@@ -165,14 +166,14 @@ void ai_play(char* play_symbol, char* enemy_symbol, char* grid[3][3]) {
     Play plays[9] = {};
     int play_cost[9] = {};
 
-    generate_all_plays(play_symbol, grid, plays);
+    int n_plays = generate_all_plays(play_symbol, grid, plays);
 
     for (size_t i = 0; i < 9; i++) {
-        Play play = plays[i];
-        if (play.row == 0 && play.col == 0) {
+        if (i >= n_plays) {
             play_cost[i] = INT_MAX;
             continue;
         }
+        Play play = plays[i];
         play_cost[i] = calculate_play_cost(play, play_symbol, enemy_symbol, grid);
     }
 
