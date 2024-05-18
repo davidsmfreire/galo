@@ -219,8 +219,8 @@ int main() {
         printf("Choose your character:\n 1 -> X (game starter)\n 2 -> O\n");
         int read = scanf("%i", &choice);
         if (read != 1) {
-            int c;
-            while ((c = getchar()) != '\n' && c != EOF);
+            printf("Bad input\n");
+            return 1;
         }
         if (choice != 1 && choice != 2) {
             printf("[\x1b[31mERROR\033[0m] Must either provide 1 or 2!\n");
