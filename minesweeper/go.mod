@@ -1,4 +1,4 @@
-module 02_minesweeper
+module minesweeper
 
 go 1.20
 
