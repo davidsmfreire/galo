@@ -1,7 +1,11 @@
-FROM golang:1.20
+FROM golang:1.20 as build
 
-WORKDIR /app
-
-COPY main.go ./
+COPY main.go .
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o /main main.go
+
+FROM scratch
+
+COPY --from=build /main /main
+
+CMD [ "./main" ]

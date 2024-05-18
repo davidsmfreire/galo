@@ -1,9 +1,11 @@
-FROM alpine
-
-RUN apk add --no-cache build-base
-
-WORKDIR /app
+FROM gcc:latest as build
 
 COPY main.c .
 
-RUN gcc -o /main main.c
+RUN gcc -static -o main main.c
+
+FROM scratch
+
+COPY --from=build /main /main
+
+CMD [ "./main" ]

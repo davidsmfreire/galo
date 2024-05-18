@@ -1,3 +1,5 @@
-FROM node
+FROM node:18-alpine
 
-COPY main.js /main
+COPY main.js .
+
+CMD [ "main.js" ]
