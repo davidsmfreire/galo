@@ -7,7 +7,7 @@ build-dir-%:
 galo: build-dir-galo
 	gcc galo/main.c -o ./galo/build/galo && ./galo/build/galo
 
-minesweeper: build-dir-minesweeper
+minesweeper:
 	cd minesweeper && go run main.go
 
 scramble:
