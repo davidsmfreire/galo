@@ -126,7 +126,7 @@ func (grid *Grid) HasBomb(row int, col int) int {
 
 func (grid *Grid) Play(row int, col int) int {
 
-	if row >= grid.height || col >= grid.width {
+	if !grid.checkBounds(row, col) {
 		return GRID_PLAY_OUTSIDE_BOUNDARIES
 	}
 
